@@ -54,6 +54,10 @@ class mainController extends Controller
             return back()->with('error', 'API request failed');
         }
 
+        if($response->json()['Response'] == 'False'){
+            return back()->with('error', 'No movie found');
+        }
+
         return view('home', [
             'movies' => $response->json(),
         ]);
